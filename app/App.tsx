@@ -11,6 +11,11 @@ export default function App() {
     if (process.env.NODE_ENV !== "production") {
       console.info("[ChatKitPanel] widget action", action);
     }
+
+    if (action.type === "open_url" && typeof action.payload?.url === "string") {
+      // Open the URL in a new tab
+      window.open(action.payload.url, "_blank");
+    }
   }, []);
 
   const handleResponseEnd = useCallback(() => {
